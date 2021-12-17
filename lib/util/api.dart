@@ -57,3 +57,13 @@ Future<Map<String, dynamic>> hitApiDelete(String url, Map<String, dynamic> body)
     final Map<String, dynamic> responseData = json.decode(responseStr);
     return responseData;
 }
+
+Future<Map<String, dynamic>> hitAPIPatch(String url, Map<String, dynamic> data) async {
+    Response response = await patch(
+      url,
+      body: json.encode(data),
+    );
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+    return responseData;
+}

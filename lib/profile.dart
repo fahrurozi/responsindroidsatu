@@ -210,14 +210,14 @@ class _cert_profileState extends State<profile> {
                     subtitle: Text(this.data['email']),
                    
                   ),
-                  new ListTile(
-                    leading: const Icon(
-                      Icons.calendar_today,
-                      color: Colors.blueAccent,
-                    ),
-                    title: const Text('Date of Birth'),
-                    subtitle: Text(this.data['bday']),
-                  ),
+                  // new ListTile(
+                  //   leading: const Icon(
+                  //     Icons.calendar_today,
+                  //     color: Colors.blueAccent,
+                  //   ),
+                  //   title: const Text('Date of Birth'),
+                  //   subtitle: Text(this.data['bday']),
+                  // ),
                   new ListTile(
                     leading: const Icon(
                       Icons.person,
@@ -236,33 +236,33 @@ class _cert_profileState extends State<profile> {
                     subtitle: Text(this.data['address']),
                    
                   ),
-                  new ListTile(
-                    leading: const Icon(
-                      Icons.person,
-                      color: Colors.blueAccent,
-                    ),
-                    title: const Text('City'),
-                    subtitle: Text(this.data['city']),
+                  // new ListTile(
+                  //   leading: const Icon(
+                  //     Icons.person,
+                  //     color: Colors.blueAccent,
+                  //   ),
+                  //   title: const Text('City'),
+                  //   subtitle: Text(this.data['city']),
                    
-                  ),
-                  new ListTile(
-                    leading: const Icon(
-                      Icons.person,
-                      color: Colors.blueAccent,
-                    ),
-                    title: const Text('Country'),
-                    subtitle: Text(this.data['country']),
+                  // ),
+                  // new ListTile(
+                  //   leading: const Icon(
+                  //     Icons.person,
+                  //     color: Colors.blueAccent,
+                  //   ),
+                  //   title: const Text('Country'),
+                  //   subtitle: Text(this.data['country']),
                    
-                  ),
-                  new ListTile(
-                    leading: const Icon(
-                      Icons.person,
-                      color: Colors.blueAccent,
-                    ),
-                    title: const Text('Postal Code'),
-                    subtitle: Text(this.data['postalcode']),
+                  // ),
+                  // new ListTile(
+                  //   leading: const Icon(
+                  //     Icons.person,
+                  //     color: Colors.blueAccent,
+                  //   ),
+                  //   title: const Text('Postal Code'),
+                  //   subtitle: Text(this.data['postalcode']),
                    
-                  ),
+                  // ),
                   SizedBox(height: 15),
                   GestureDetector(
                     onTap: () {

@@ -6,6 +6,8 @@ import 'package:sethcapp/domain/user.dart';
 import 'package:sethcapp/profile.dart';
 import 'package:sethcapp/providers/auth.dart';
 import 'package:sethcapp/providers/user_provider.dart';
+import 'package:sethcapp/util/api.dart';
+import 'package:sethcapp/util/app_url.dart';
 import 'package:sethcapp/util/validators.dart';
 import 'package:sethcapp/util/widgets.dart';
 import 'package:provider/provider.dart';
@@ -20,29 +22,115 @@ class _EditProfileState extends State<EditProfile> {
 
   String _email, _name, _phone, _address;
 
+  Future<Map<String, dynamic>> getProfile(context) async {
+    print('getProfile() called');
+    User user = Provider.of<UserProvider>(context, listen: false).user;
+    Map<String, String> data = {"username": user.username, "password": user.password};
+    var response = await hitApi(AppUrl.getProfile, data);
+
+    return response['profile'];
+  }
+
+  var data;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getProfile(context).then((listItems) {
+      setState(() {
+        this.data = listItems;
+      });
+    });
+  }
+
+  void _editProfile() async{
+      User user = Provider.of<UserProvider>(context, listen: false).user;
+      print('DEBUGGG' + this.data['id'].toString());
+      var response = await hitAPIPatch(AppUrl.editProfile, {
+        "username": user.username,
+        "password": user.password,
+        "new_auth": {
+          "username": user.username,
+          "password": user.password,
+        },
+        "new_profile": {
+          "email" : _email,
+          "name" : _name,
+          "phone" : _phone,
+          "address" : _address,
+        }
+      });
+
+
+      if (response['success'] == true) {
+        // Show success message
+        Navigator.of(context).pop();
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => profile(),
+        ));
+        Flushbar(
+          title: "Success",
+          message: "Profile updated successfully",
+          duration: Duration(seconds: 3),
+        )..show(context);
+      }
+      //else {
+      //   return false;
+      // }
+  }
+
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+
   @override
   Widget build(BuildContext context) {
     // AuthProvider auth = Provider.of<AuthProvider>(context);
 
+    if (this.data == null) {
+      return new WillPopScope(
+          onWillPop: () async => false,
+          child: SimpleDialog(
+              key: _keyLoader,
+              backgroundColor: Colors.black54,
+              children: <Widget>[
+                Center(
+                  child: Column(children: [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Please Wait....",
+                      style: TextStyle(color: Colors.blueAccent),
+                    )
+                  ]),
+                )
+              ]));
+    }
+
     final emailField = TextFormField(
+      initialValue: this.data['email'],
       autofocus: false,
       onSaved: (value) => _email = value,
       decoration: buildInputDecoration("Confirm Email", Icons.person_search),
     );
 
     final nameField = TextFormField(
+      initialValue: this.data['name'],
       autofocus: false,
       onSaved: (value) => _name = value,
       decoration: buildInputDecoration("Fill Name", Icons.person),
     );
-
+  
     final phoneField = TextFormField(
+      initialValue: this.data['phone'],
       autofocus: false,
       onSaved: (value) => _phone = value,
       decoration: buildInputDecoration("Fill Phone", Icons.phone),
     );
 
     final addressField = TextFormField(
+      initialValue: this.data['address'],
       autofocus: false,
       onSaved: (value) => _address = value,
       decoration: buildInputDecoration("Fill NIK", Icons.poll_rounded)
@@ -162,7 +250,10 @@ class _EditProfileState extends State<EditProfile> {
                       "Edit Profile",
                       style: TextStyle(color: Colors.white),
                     ),
-                    // onPressed: doEditProfile,
+                    onPressed: () {
+                      formKey.currentState.save();
+                      _editProfile();
+                      },
                   ),
                 ),
                 SizedBox(height: 15.0),

@@ -10,6 +10,8 @@ class AppUrl {
   static const String findAplaces = cApiUrl + "/find_aplaces";
   static const String historyA = cApiUrl + "/history_a";
   static const String deleteCertificate = cApiUrl + "/delete_cert";
+  static const String editProfile = cApiUrl + "/edit_profile";
+
 
   static const String bApiUrl = "http://10.0.2.2:8000/b_web";
   static const String qr = bApiUrl + "/receive_qr";  

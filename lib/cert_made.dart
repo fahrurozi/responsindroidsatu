@@ -142,24 +142,24 @@ class _cert_madeState extends State<cert_made> {
       SizedBox(height: 20),
       Text("Result", style: kTitleTextstyle),
     ];
-
+    print('DEBUGGG,' + response["certs"].toString());
     List<dynamic> certificates = response["certs"];
-    for (List<dynamic> cert in certificates) {
+    for (Map<String, dynamic> cert in certificates) {
       var cert_image = 'swab';
-      if ((cert[2] as String).contains('PCR')) {
+      if ((cert['cert_type'] as String).contains('PCR')) {
         cert_image = 'pcr';
-      } else if ((cert[2] as String).contains('Genose')) {
+      } else if ((cert['cert_type'] as String).contains('Genose')) {
         cert_image = 'swab';
-      } else if ((cert[2] as String).contains('Rapid')) {
+      } else if ((cert['cert_type'] as String).contains('Rapid')) {
         cert_image = 'Rapid';
       }
 
       listItems.add(PreventCard(
-        text: cert[4],
-        subtitle: cert[2],
+        text: 'REPLACE THIS WITH YOUR OWN TEXT',
+        subtitle: cert['note'],
         image: "assets/images/$cert_image.png",
-        title: cert[1],
-        id: cert[3],
+        title: cert['cert_type'],
+        id: cert['date'],
       ));
       listItems.add(SizedBox(height: 20));
     }

@@ -105,7 +105,7 @@ class _cert_templateState extends State<cert_template> {
   final controller = ScrollController();
   double offset = 0;
 
-  Future<List<dynamic>> getCert(context) async {
+  Future<Map<String, dynamic>> getCert(context) async {
     print('getCert() called');
     User user = Provider.of<UserProvider>(context, listen: false).user;
     Map<String, String> data = {"nik": user.nik};
@@ -200,7 +200,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Date'),
-                    subtitle: Text(this.data[3]),
+                    subtitle: Text(this.data['date']),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -224,7 +224,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Hospital'),
-                    subtitle: Text(this.data[4]),
+                    subtitle: Text('REPLACE THIS WITH HOSPITAL NAME'),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -236,7 +236,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Test Type'),
-                    subtitle: Text(this.data[1]),
+                    subtitle: Text(this.data['cert_type']),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -248,7 +248,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Result'),
-                    subtitle: Text(this.data[2]),
+                    subtitle: Text(this.data['note']),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,

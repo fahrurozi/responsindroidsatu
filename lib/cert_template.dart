@@ -82,6 +82,79 @@ class _cert_templateState extends State<cert_template> {
     });
   }
 
+  void _deleteCertificate() {
+    Future<bool> hitDeleteApiCertificate() async {
+      User user = Provider.of<UserProvider>(context, listen: false).user;
+      print('DEBUGGG' + this.data['id'].toString());
+      var response = await hitApiDelete(AppUrl.deleteCertificate, {
+        "username": user.username,
+        "password": user.password,
+        "cert_id": this.data['id']
+      });
+
+      if (response['success'] == true) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Confirmation"),
+          content: new Text("Are you sure you want to delete this certificate?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Delete"),
+              onPressed: () {
+                hitDeleteApiCertificate().then((value) {
+                  if (value == true) {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => DashBoard(),
+                    ));
+                  } else {
+                    Navigator.of(context).pop();
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        // return object of type Dialog
+                        return AlertDialog(
+                          title: new Text("Error"),
+                          content: new Text("Something went wrong"),
+                          actions: <Widget>[
+                            // usually buttons at the bottom of the dialog
+                            new FlatButton(
+                              child: new Text("OK"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                });
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _selectedFab(int index) {
     if (index == 0) {
       Navigator.push(
@@ -224,7 +297,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Hospital'),
-                    subtitle: Text('REPLACE THIS WITH HOSPITAL NAME'),
+                    subtitle: Text(this.data['a_place_name']),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -252,6 +325,19 @@ class _cert_templateState extends State<cert_template> {
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  GestureDetector(
+                    onTap: () {
+                      _deleteCertificate();
+                    },
+                    child: Text(
+                      "Delete",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   SizedBox(height: 15),

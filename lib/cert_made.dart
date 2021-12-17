@@ -155,7 +155,7 @@ class _cert_madeState extends State<cert_made> {
       }
 
       listItems.add(PreventCard(
-        text: 'REPLACE THIS WITH YOUR OWN TEXT',
+        text: cert['a_place_name'],
         subtitle: cert['note'],
         image: "assets/images/$cert_image.png",
         title: cert['cert_type'],

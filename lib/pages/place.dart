@@ -444,7 +444,6 @@ class _PlaceState extends State<Place> {
       Icons.article,
       Icons.local_hospital,
       Icons.history,
-      Icons.history
     ];
     return AnchoredOverlay(
       showOverlay: true,

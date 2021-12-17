@@ -129,6 +129,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       Navigator.push(
           context, new MaterialPageRoute(builder: (context) => new info_rs()));
     }
+    else if (index == 4) {
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => new info_rs()));
+    }
     print("selectedFab: $index");
     setState(() {
       _lastSelected = 'FAB: $index';
@@ -348,14 +352,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       Icons.place,
       Icons.article,
       Icons.local_hospital,
-      Icons.history
+      Icons.history,
+      Icons.emoji_people
     ];
 
     final hints = [
       'Find Places',
       'Certificate Types',
       'Create Certificates',
-      'Pass History'
+      'Pass History',
+      'Profile'
     ];
 
     return AnchoredOverlay(

@@ -142,7 +142,7 @@ class _cert_madeState extends State<cert_made> {
       SizedBox(height: 20),
       Text("Result", style: kTitleTextstyle),
     ];
-    print('DEBUGGG,' + response["certs"].toString());
+
     List<dynamic> certificates = response["certs"];
     for (Map<String, dynamic> cert in certificates) {
       var cert_image = 'swab';

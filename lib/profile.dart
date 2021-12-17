@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:sethcapp/cert_made.dart';
 import 'package:sethcapp/constant.dart';
+import 'package:sethcapp/editprofile.dart';
 import 'package:sethcapp/pages/login.dart';
 import 'package:sethcapp/providers/user_provider.dart';
 import 'package:sethcapp/util/api.dart';
@@ -16,6 +17,7 @@ import 'package:sethcapp/info_screen.dart';
 import 'package:sethcapp/info_rs.dart';
 import 'package:sethcapp/history_pass.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 
 import 'domain/user.dart';
 
@@ -261,7 +263,27 @@ class _cert_profileState extends State<profile> {
                     subtitle: Text(this.data['postalcode']),
                    
                   ),
-                  
+                  SizedBox(height: 15),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            // return cert_made();
+                            return EditProfile();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Edit Profile",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 15),
                   GestureDetector(
                     onTap: () {

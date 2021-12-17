@@ -224,7 +224,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Hospital'),
-                    subtitle: Text(this.data[3]),
+                    subtitle: Text(this.data[4]),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -236,7 +236,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Test Type'),
-                    subtitle: Text(this.data[0]),
+                    subtitle: Text(this.data[1]),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -248,7 +248,7 @@ class _cert_templateState extends State<cert_template> {
                       color: Colors.blueAccent,
                     ),
                     title: const Text('Result'),
-                    subtitle: Text(this.data[1]),
+                    subtitle: Text(this.data[2]),
                     trailing: const Icon(
                       Icons.check_circle,
                       color: Colors.green,

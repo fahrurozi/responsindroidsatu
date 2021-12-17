@@ -35,3 +35,13 @@ Future<Map<String, dynamic>> hitApi(String url, Map<String, dynamic> data) async
     final Map<String, dynamic> responseData = json.decode(response.body);
     return responseData;
 }
+
+Future<Map<String, dynamic>> hitApiGet(String url, Map<String, dynamic> queryParams) async {
+    final urlWithQueryParams = Uri.parse('$url')
+      .replace(queryParameters: queryParams);
+
+    Response response = await get(urlWithQueryParams);
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+    return responseData;
+}

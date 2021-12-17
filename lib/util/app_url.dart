@@ -5,6 +5,7 @@ class AppUrl {
   static const String findPlacesModel = cApiUrl + "/find_places_model";
   static const String placeInput = cApiUrl + "/place_input";
   static const String getCertificates = cApiUrl + "/get_certificates";
+  static const String getProfile = cApiUrl + "/get_profile";
   static const String certAplaces = cApiUrl + "/cert_aplaces";
   static const String findAplaces = cApiUrl + "/find_aplaces";
   static const String historyA = cApiUrl + "/history_a";
